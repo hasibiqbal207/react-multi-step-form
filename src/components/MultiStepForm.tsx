@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Progress from './Progress';
+import { Personal, Signup, SocialLinks } from './Forms';
 
 const message = ["Learn React", "Apply for Jobs", "Invest your income"]
 const MultiStepForm = () => {
@@ -18,6 +19,19 @@ const MultiStepForm = () => {
         }
     }
 
+    const renderSteps = () => {
+        switch (step) {
+            case 1:
+                return <Personal />;
+            case 2:
+                return <Signup />;
+            case 3:
+                return <SocialLinks />;
+            default:
+                return null;
+        }
+    }
+
   return (
     <div className="container">
         <div className="progress_container">
@@ -27,7 +41,8 @@ const MultiStepForm = () => {
             <div className={`${step>=3 ? 'circle active' : 'circle'}`}>3</div>
         </div>
         <div className="content">
-            <Message step={step} />
+            {/* <Message step={step} /> */}
+            {renderSteps()}
         </div>
         <div className="btns">
             <button className={`${step<=1 ? 'disabled' : 'btn'}`} onClick={handlePrevious}>Previous</button>
